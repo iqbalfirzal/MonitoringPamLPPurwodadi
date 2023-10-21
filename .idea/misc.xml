@@ -1,0 +1,24 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/drawable/bg_shape.xml" value="0.2203125" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/drawable/ic_icon_ok.xml" value="0.1235" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/activity_detail_lapsus.xml" value="0.13949275362318841" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/activity_kontrol.xml" value="0.18611111111111112" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/activity_lapsus.xml" value="0.14175724637681159" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/activity_main.xml" value="0.18611111111111112" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/activity_riwayat_lapsus.xml" value="0.14175724637681159" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/activity_show_photo.xml" value="0.2" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/list_lapsusitem.xml" value="0.14175724637681159" />
+        <entry key="..\:/Master/AndroidStudioProject/MonitoringEWasrik/app/src/main/res/layout/list_riwlapsusitem.xml" value="0.14175724637681159" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="corretto-16" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

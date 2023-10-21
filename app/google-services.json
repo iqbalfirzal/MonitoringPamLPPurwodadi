@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "261014448623",
+    "project_id": "pengamanan-lapas-ambarawa",
+    "storage_bucket": "pengamanan-lapas-ambarawa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261014448623:android:dc6085133b6a2232516e1a",
+        "android_client_info": {
+          "package_name": "lpambarawa.app.monitoring_pam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261014448623-0qs7kcoqbmo255pctn7fcv37ju9v4hg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8EcTQfVIDpneLErabXOtQUcdvX2QXBPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261014448623-0qs7kcoqbmo255pctn7fcv37ju9v4hg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261014448623:android:da1ac92472e98b5d516e1a",
+        "android_client_info": {
+          "package_name": "pendataan.pam.ambarawa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261014448623-0qs7kcoqbmo255pctn7fcv37ju9v4hg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8EcTQfVIDpneLErabXOtQUcdvX2QXBPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261014448623-0qs7kcoqbmo255pctn7fcv37ju9v4hg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
