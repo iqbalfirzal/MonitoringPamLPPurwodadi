@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="LP Ambarawa   "
+            android:text="LP Purwodadi   "
             android:theme="@style/TitleTextStyle"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
@@ -136,7 +136,7 @@
                             android:layout_gravity="center">
 
                             <FrameLayout
-                                android:id="@+id/layclickjumlahpetugas"
+                                android:id="@+id/layclicklapsus"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:clickable="true"
@@ -149,7 +149,7 @@
                                     android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/datapetugas"
+                                    android:id="@+id/datalapsus"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -159,10 +159,62 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Jumlah Petugas\nPengamanan"
+                                    android:text="Laporan Khusus\nPengamanan"
                                     android:textSize="15sp"
                                     android:textStyle="bold"
                                     android:gravity="center"/>
+
+                                </LinearLayout>
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:backgroundTint="@color/black"
+                            android:background="@drawable/bg_shape"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_gravity="center">
+
+                            <FrameLayout
+                                android:id="@+id/layclickjumlahpetugas"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clickable="true"
+                                android:background="?selectableItemBackground"
+                                android:focusable="true">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/datapetugas"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:textSize="35sp"
+                                        android:textStyle="bold"
+                                        android:gravity="center"/>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Jumlah Petugas\nPengamanan"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"
+                                        android:gravity="center"/>
 
                                 </LinearLayout>
 
@@ -176,6 +228,14 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
             android:id="@+id/welcomemainbody2"
@@ -205,6 +265,13 @@
                 android:text="LAPORAN KONTROL"
                 android:layout_marginBottom="10dp"/>
 
+            <Button
+                android:id="@+id/btn_elapsus"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="LAPORAN KHUSUS"
+                android:layout_marginBottom="10dp"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -212,7 +279,7 @@
                 android:layout_marginBottom="40dp"
                 android:gravity="center"
                 android:textSize="10dp"
-                android:text="Copyright 2023 / LP Ambarawa"/>
+                android:text="Copyright 2023 / LP Purwodadi"/>
 
         </LinearLayout>
 

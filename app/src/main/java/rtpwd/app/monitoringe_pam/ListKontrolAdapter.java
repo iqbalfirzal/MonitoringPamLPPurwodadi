@@ -1,9 +1,9 @@
-package lpambarawa.app.monitoring_pam;
+package rtpwd.app.monitoringe_pam;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,29 +25,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class ListTrafficAdapter extends FirestoreRecyclerAdapter<TrafficModel, ListTrafficAdapter.ListTrafficHolder> {
+public class ListKontrolAdapter extends FirestoreRecyclerAdapter<KontrolModel, ListKontrolAdapter.ListKontrolHolder> {
     private final Context context;
-    private final RecyclerView recyclerView;
 
-    public ListTrafficAdapter(@NonNull FirestoreRecyclerOptions<TrafficModel> options, Context context) {
+    public ListKontrolAdapter(@NonNull FirestoreRecyclerOptions<KontrolModel> options, Context context) {
         super(options);
         this.context = context;
-        recyclerView = ((Activity) context).findViewById(R.id.rvparkir);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    protected void onBindViewHolder(@NonNull ListTrafficHolder holder, int position, @NonNull TrafficModel model) {
-        holder.nomormasuk.setText(String.valueOf(position+1));
-        holder.platnomor.setText("Plat Nomor : "+model.getPlatNomor());
-        holder.jeniskendaraan.setText("Kendaraan     : "+model.getJenisKendaraan());
-        holder.keperluan.setText("Keperluan      : "+model.getKeperluan());
-        holder.masukjam.setText("Masuk jam     : "+formatJam(model.getMasukJam()));
-        if(model.getSudahKeluar()){
-            holder.keluarjam.setText("Keluar jam      : "+formatJam(model.getKeluarJam()));
-        }else{
-            holder.keluarjam.setText("KENDARAAN MASIH TERPARKIR");
+    protected void onBindViewHolder(@NonNull ListKontrolHolder holder, int position, @NonNull KontrolModel model) {
+        String lati,longi;
+        holder.jamkontrol.setText("Pukul\n"+formatJam(model.getJamKontrol()));
+        holder.regutext.setText("Regu     : "+model.getRegu());
+        holder.petugastext.setText("Petugas  : "+model.getPetugas());
+        if(model.getKeterangan()!=null){
+            holder.keterangantext.setText("Keterangan  : "+model.getKeterangan());
+        }else {
+            holder.keterangantext.setText("Keterangan  : -");
         }
+        holder.poskontroltext.setText("Titik Kontrol : "+model.getPosKontrol());
         String urlfoto = model.getFoto();
         if(urlfoto.equals("")){
             holder.btnlihatfoto.setVisibility(View.GONE);
@@ -55,33 +53,45 @@ public class ListTrafficAdapter extends FirestoreRecyclerAdapter<TrafficModel, L
             holder.btnlihatfoto.setVisibility(View.VISIBLE);
             Glide.with(holder.itemView.getContext())
                     .setDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_photo)
-                            .error(R.drawable.ic_photo)).load(urlfoto).into(holder.foto);
+                    .error(R.drawable.ic_photo)).load(urlfoto).into(holder.foto);
         }
+        if(model.getGeo()!=null){
+            lati = String.valueOf(model.getGeo().getLatitude());longi = String.valueOf(model.getGeo().getLongitude());
+        }else{
+            lati="0";longi="0";
+        }
+        holder.btnlihatlokasi.setOnClickListener(v -> {
+            String strUri = "http://maps.google.com/maps?q=loc:" + lati + "," + longi + "(pinned)";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strUri));
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+            context.startActivity(intent);
+        });
     }
 
     @NonNull
     @Override
-    public ListTrafficHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_kendaraanitem,
+    public ListKontrolHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.list_laporanitem,
                 parent, false);
-        return new ListTrafficHolder(v);
+        return new ListKontrolHolder(v);
     }
 
-    class ListTrafficHolder extends RecyclerView.ViewHolder {
-        TextView platnomor,jeniskendaraan,keperluan,masukjam,keluarjam,nomormasuk;
-        Button btnlihatfoto;
+    class ListKontrolHolder extends RecyclerView.ViewHolder {
+        TextView jamkontrol,regutext,petugastext,keterangantext,poskontroltext;
+        Button btnlihatfoto,btnlihatlokasi;
         ImageView foto;
         LinearLayout layfotolist;
 
-        public ListTrafficHolder(View itemView) {
+        @SuppressLint("SetTextI18n")
+        public ListKontrolHolder(View itemView) {
             super(itemView);
-            platnomor = itemView.findViewById(R.id.platnomortext);
-            jeniskendaraan = itemView.findViewById(R.id.jeniskendaraantext);
-            keperluan = itemView.findViewById(R.id.keperluantext);
-            masukjam = itemView.findViewById(R.id.masukjamtext);
-            keluarjam = itemView.findViewById(R.id.keluarjamtext);
-            nomormasuk = itemView.findViewById(R.id.nomormasuk);
+            jamkontrol = itemView.findViewById(R.id.jamkontrol);
+            regutext = itemView.findViewById(R.id.regutext);
+            petugastext = itemView.findViewById(R.id.petugastext);
+            keterangantext = itemView.findViewById(R.id.keterangantext);
+            poskontroltext = itemView.findViewById(R.id.poskontroltext);
             btnlihatfoto = itemView.findViewById(R.id.lihatfoto);
+            btnlihatlokasi = itemView.findViewById(R.id.lihatlokasi);
             foto = itemView.findViewById(R.id.fotolist);
             layfotolist = itemView.findViewById(R.id.layfotolist);
             btnlihatfoto.setOnClickListener(v -> {
@@ -98,7 +108,7 @@ public class ListTrafficAdapter extends FirestoreRecyclerAdapter<TrafficModel, L
     }
 
     private String formatJam(Date tanggal){
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatTanggal = new SimpleDateFormat("HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatTanggal = new SimpleDateFormat("HH:mm");
         return formatTanggal.format(tanggal);
     }
 
@@ -110,4 +120,5 @@ public class ListTrafficAdapter extends FirestoreRecyclerAdapter<TrafficModel, L
             context.startActivity(intent);
         }).addOnFailureListener(e -> Toast.makeText(context, "Gagal menampilkan foto. Mohon periksa koneksi.", Toast.LENGTH_LONG).show());
     }
+
 }

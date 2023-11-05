@@ -1,4 +1,4 @@
-package lpambarawa.app.monitoring_pam;
+package rtpwd.app.monitoringe_pam;
 
 import org.junit.Test;
 

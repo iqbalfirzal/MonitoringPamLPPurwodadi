@@ -1,4 +1,4 @@
-package lpambarawa.app.monitoring_pam;
+package rtpwd.app.monitoringe_pam;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,7 +48,7 @@ public class Welcome extends AppCompatActivity {
             Intent intent = new Intent(Welcome.this, MainActivity.class);
             startActivity(intent);
         }else{
-            auth.signInWithEmailAndPassword("pemantau1@lpambarawa.go.id", "pemantau1")
+            auth.signInWithEmailAndPassword("pemantau1.1@rtpwd.go.id", "pemantau1.1")
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(Welcome.this, MainActivity.class);

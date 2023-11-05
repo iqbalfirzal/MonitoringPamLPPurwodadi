@@ -1,4 +1,4 @@
-package lpambarawa.app.monitoring_pam;
+package rtpwd.app.monitoringe_pam;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private TextView kontrolpam,jumlahpetugas;
+    private TextView kontrolpam,jumlahpetugas,lapsus;
     private Date ldate,gdate;
 
     @Override
@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().subscribeToTopic("tessssssss12365421765");
         kontrolpam = findViewById(R.id.datakontrolpam);
         jumlahpetugas = findViewById(R.id.datapetugas);
+        lapsus = findViewById(R.id.datalapsus);
         Button instruksiharian = findViewById(R.id.btn_instruksi);
         Button ekontrol = findViewById(R.id.btn_econtrol);
+        Button elapsus = findViewById(R.id.btn_elapsus);
         instruksiharian.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ArahanAct.class);
             startActivity(intent);
@@ -46,8 +48,13 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("pilihkontrolnya", "kontrolpengamanan");
             startActivity(intent);
         });
+        elapsus.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LapsusAct.class);
+            startActivity(intent);
+        });
         FrameLayout layclickcontrolpam = findViewById(R.id.layclickcontrolpam);
         FrameLayout layclickjumlahptgs = findViewById(R.id.layclickjumlahpetugas);
+        FrameLayout layclicklapsus = findViewById(R.id.layclicklapsus);
         layclickcontrolpam.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, KontrolAct.class);
             intent.putExtra("pilihkontrolnya", "kontrolpengamanan");
@@ -55,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         });
         layclickjumlahptgs.setOnClickListener(v -> {
             Toast.makeText(MainActivity.this,"Data Terbarui ✓",Toast.LENGTH_LONG).show();
+        });
+        layclicklapsus.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LapsusAct.class);
+            startActivity(intent);
         });
         countData();
     }
@@ -96,6 +107,19 @@ public class MainActivity extends AppCompatActivity {
                 jumlahpetugas.setText(0);
                 Toast.makeText(MainActivity.this,"Gagal membaca data jumlah harian, mohon periksa koneksi internet.",Toast.LENGTH_LONG).show();
             }
+        });
+
+        Query querylapsus = db.collection("lapsus").orderBy("tgllaporan")
+                .whereGreaterThan("tgllaporan", new Timestamp(gdate))
+                .whereLessThan("tgllaporan", new Timestamp(ldate));
+        querylapsus.get().addOnCompleteListener(task -> {
+            int lapsussize=0;
+            if(task.isSuccessful()){
+                lapsussize = Objects.requireNonNull(task.getResult()).size();
+            }else {
+                Toast.makeText(MainActivity.this,"Gagal membaca data harian, mohon periksa koneksi internet.",Toast.LENGTH_LONG).show();
+            }
+            lapsus.setText(String.valueOf(lapsussize));
         });
     }
 
